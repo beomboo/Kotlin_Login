@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "789139343926",
+    "project_id": "mvvm-c74ef",
+    "storage_bucket": "mvvm-c74ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789139343926:android:c0862a7b8da3ef64f3e697",
+        "android_client_info": {
+          "package_name": "com.beomboo.mvvm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXkNGQfzpg8zsMC80VNMbFWBQF-mZUU1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
