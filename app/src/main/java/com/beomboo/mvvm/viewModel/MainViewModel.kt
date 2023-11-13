@@ -1,7 +1,6 @@
 package com.beomboo.mvvm.viewModel
 
 import android.app.Application
-import android.app.job.JobInfo
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -13,7 +12,6 @@ import androidx.lifecycle.viewModelScope
 import com.beomboo.mvvm.model.UserEntity
 import com.beomboo.mvvm.repository.Repository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -31,7 +29,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     // 회원가입 결과값(pid)
     private var _registrationResult = MutableLiveData<List<Long>>()
-
 
     val logInYn: LiveData<UserEntity> get() = _logInYn
     val registrationResult: LiveData<List<Long>> get() = _registrationResult
@@ -67,9 +64,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun toastMessage(){
-        Toast.makeText(context,"정보가 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
-    }
+    fun toastMessage() = Toast.makeText(context,"정보가 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+
 
     class Factory(val application: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
