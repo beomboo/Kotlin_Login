@@ -1,6 +1,7 @@
 package com.beomboo.mvvm.viewModel
 
 import android.app.Application
+import android.app.job.JobInfo
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -9,14 +10,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.room.Entity
-import com.beomboo.mvvm.model.UserDao
 import com.beomboo.mvvm.model.UserEntity
 import com.beomboo.mvvm.repository.Repository
-import com.google.firebase.crashlytics.internal.model.CrashlyticsReport.Session.User
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
+// ViewModel(1) : View(N) Relation
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val context = application
@@ -25,18 +26,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Repository
     val repository: Repository = Repository(context)
 
-    // 회원가입 성공 여부
-    private var _signInYn = MutableLiveData<Boolean>()
-    val signInYn: LiveData<Boolean> get() = _signInYn
-
     // 로그인 성공 여부
     private var _logInYn = MutableLiveData<UserEntity>()
+
+    // 회원가입 결과값(pid)
+    private var _registrationResult = MutableLiveData<List<Long>>()
+
+
     val logInYn: LiveData<UserEntity> get() = _logInYn
+    val registrationResult: LiveData<List<Long>> get() = _registrationResult
 
     fun login(id: String, pass: String) = viewModelScope.launch {
-        val result = withContext(Dispatchers.IO) {
-            repository.select(id, pass)
-        }
+        val result = withContext(Dispatchers.IO) {repository.select(id, pass)}
         if(result != null){
             _logInYn.value = result!!
         }else{
@@ -45,16 +46,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         Log.d(TAG, "id($id) pass($pass)")
     }
 
-    fun setUserInfo(userEntity: UserEntity) = viewModelScope.launch {
+
+    // [회원가입]
+    // SUCCESS : pid,
+    // FAIL : ERROR
+    fun setUserInfo(userEntity: UserEntity)= viewModelScope.launch {
         try {
-            withContext(Dispatchers.IO) {
-                _signInYn.value = repository.insert(userEntity)
-            }
-            Log.d(TAG, "result : ${_signInYn.value}")
+            val pid = withContext(Dispatchers.IO) { repository.insert(userEntity) }
+            _registrationResult.value = pid
+            Log.d(TAG, "result : ${pid}")
         } catch (e: Exception) {
-            _signInYn.value = false
-            toastMessage()
-            Log.e(TAG, "setMessage error $e")
+            Log.e(TAG, "setMessage error >> $e")
         }
     }
 

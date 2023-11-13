@@ -2,7 +2,7 @@
     <string name="app_name">beomboo</string>
     <string name="text_filed_hint">보내고 싶은 내용을 입력하세요.</string>
     <string name="mainPage">Main Page</string>
-    <string name="loginPage">Login Page</string>
+    <string name="register">회원가입</string>
 
     <string name="form_username">이름을 입력하세요</string>
     <string name="form_userId">ID를 입력하세요</string>
