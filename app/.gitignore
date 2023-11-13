@@ -1,1 +1,3 @@
 /build
+local.properties
+/app/src/main/java/com/beomboo/mvvm/utils/Constants.kt

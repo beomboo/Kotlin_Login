@@ -5,6 +5,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
 import com.beomboo.mvvm.R
 import com.beomboo.mvvm.databinding.ActivityMainBinding
+import com.beomboo.mvvm.utils.Constants
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.webView.webViewClient = WebViewClient()
         binding.webView.webChromeClient = WebChromeClient()
 
-        binding.webView.loadUrl("https://beomboo12.tistory.com/")
+        binding.webView.loadUrl(Constants.BASE_URL)
     }
     override fun onBackPressed() {
         if(binding.webView.canGoBack()){

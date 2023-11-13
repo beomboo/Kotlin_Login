@@ -22,7 +22,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         viewModel.registrationResult.observe(this, Observer<List<Long>?> { curData ->
             if (curData != null) {
                 moveToMainView()
-                resetRegisterForm()
                 FirebaseCore(viewModel.registrationResult.value)
             }else{
                 Toast.makeText(this,"회원가입이 실패하였습니다.",Toast.LENGTH_SHORT).show()
@@ -39,10 +38,15 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
             )
             viewModel.setUserInfo(userEntity)
         }
+
+        binding.topBtn.setOnClickListener{
+            moveToMainView()
+        }
     }
 
     fun moveToMainView() {
         val intent = Intent(this, LoginActivity::class.java)
+        resetRegisterForm()
         startActivity(intent)
     }
 
