@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">beomboo</string>
+    <string name="text_filed_hint">보내고 싶은 내용을 입력하세요.</string>
+    <string name="mainPage">Main Page</string>
+    <string name="loginPage">Login Page</string>
+
+    <string name="form_username">이름을 입력하세요</string>
+    <string name="form_userId">ID를 입력하세요</string>
+    <string name="form_userPass">PASS를 입력하세요</string>
+    <string name="form_userEmail">이메일을 입력하세요</string>
+
+    <string name="saveBtn">저장하기</string>
+    <string name="loginBtn">로그인</string>
+
+    <string name="userName">이름</string>
+    <string name="userId">아이디</string>
+    <string name="userPass">패스워드</string>
+    <string name="userEmail">이메일</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="singinText">회원가입</string>
+</resources>
