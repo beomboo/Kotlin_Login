@@ -6,22 +6,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.beomboo.mvvm.R
 import com.beomboo.mvvm.databinding.ActivityRegisterBinding
 import com.beomboo.mvvm.model.UserEntity
 import com.beomboo.mvvm.utils.FirebaseCore
 import com.beomboo.mvvm.viewModel.MainViewModel
 
-class RegisterActivity : AppCompatActivity() {
-    val TAG: String = "[Be][Login]"
-    private lateinit var binding: ActivityRegisterBinding
-    private val viewModel by lazy {
-        ViewModelProvider(this, MainViewModel.Factory(application))[MainViewModel::class.java]
-    }
+class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
+    private val viewModel by lazy {ViewModelProvider(this, MainViewModel.Factory(application))[MainViewModel::class.java]}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         // ViewModel 의 데이터를 관찰
         viewModel.registrationResult.observe(this, Observer<List<Long>?> { curData ->

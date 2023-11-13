@@ -1,25 +1,19 @@
 package com.beomboo.mvvm.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.beomboo.mvvm.R
 import com.beomboo.mvvm.databinding.ActivityLoginBinding
 import com.beomboo.mvvm.model.UserEntity
 import com.beomboo.mvvm.viewModel.MainViewModel
 
-class LoginActivity : AppCompatActivity() {
-    val TAG : String = "[Be][View]"
-    private lateinit var binding: ActivityLoginBinding
-    private val viewModel by lazy {
-        ViewModelProvider(this, MainViewModel.Factory(application))[MainViewModel::class.java]
-    }
+class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login){
+    private val viewModel by lazy {  ViewModelProvider(this, MainViewModel.Factory(application))[MainViewModel::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         viewModel.getAllUserData()
 

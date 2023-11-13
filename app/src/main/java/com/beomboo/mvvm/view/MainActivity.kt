@@ -1,17 +1,14 @@
 package com.beomboo.mvvm.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
+import com.beomboo.mvvm.R
 import com.beomboo.mvvm.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         true.also { binding.webView.settings.javaScriptEnabled = it }
         binding.webView.webViewClient = WebViewClient()
