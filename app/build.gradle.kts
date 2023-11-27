@@ -66,14 +66,6 @@ dependencies {
     androidTestImplementation ("androidx.room:room-testing:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
-    // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
-
-    // Firebase Crashlytics
-    implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")
-
     val core_version = "1.9.0"
     implementation("androidx.core:core-ktx:$core_version")
 

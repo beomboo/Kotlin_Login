@@ -3,13 +3,11 @@ package com.beomboo.mvvm.view
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.beomboo.mvvm.R
 import com.beomboo.mvvm.databinding.ActivityRegisterBinding
 import com.beomboo.mvvm.model.UserEntity
-import com.beomboo.mvvm.utils.FirebaseCore
 import com.beomboo.mvvm.viewModel.MainViewModel
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity_register) {
@@ -22,7 +20,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>(R.layout.activity
         viewModel.registrationResult.observe(this, Observer<List<Long>?> { curData ->
             if (curData != null) {
                 moveToMainView()
-                FirebaseCore(viewModel.registrationResult.value)
             }else{
                 Toast.makeText(this,"회원가입이 실패하였습니다.",Toast.LENGTH_SHORT).show()
             }
